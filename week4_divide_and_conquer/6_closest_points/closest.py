@@ -4,25 +4,31 @@ import math
 from operator import itemgetter
 
 
-def closest_pair(x, y):
-    if len(x) <= 3:
-        return
+def closest_pair(x_sorted, y_sorted):
+    if len(x_sorted) <= 3:
+        return less_than_3(x_sorted)
 
-    x1, x2 = x[:mid], x[mid:]
-    y1, y2 = y[:mid], y[mid:]
-    closest_pair(y1, y1)
-    closest_pair(x2, y1)
-    closest_split_pair(x, y)
+    mid = len(x_sorted) // 2
 
-    return 1
+    x_left, x_right = x_sorted[:mid], x_sorted[mid:]
+    y_left, y_right = y_sorted[:mid], y_sorted[mid:]
+    a1 = closest_pair(x_left, y_left)
+    a2 = closest_pair(x_right, y_right)
+    a3 = closest_split_pair(x_sorted, y_sorted)
+    return min(a1, a2, a3)
 
 
-def closest_split_pair(x, y):
+def less_than_3(x):
     pass
 
 
+def closest_split_pair(x_sorted, y_sorted):
 
-    return 1
+    return -1
+
+
+def dist_(point1, point2):
+    return math.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
 
 
 if __name__ == '__main__':
