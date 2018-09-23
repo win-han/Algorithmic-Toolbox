@@ -19,7 +19,6 @@ def partition3(a, l, r):
     while m < k:
         a[l + m], a[j - m] = a[j - m], a[l + m]
         m += 1
-
     return j, m
 
 

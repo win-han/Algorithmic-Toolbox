@@ -1,6 +1,7 @@
 # Uses python3
 import sys
 
+
 def optimal_sequence(n):
     sequence = []
     while n >= 1:
