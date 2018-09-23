@@ -8,6 +8,7 @@ def get_change(m):
     for i in range(5, m + 1):
         mini = sorted([(sol[-1],1), (sol[-3],3), (sol[-4],4)], key=itemgetter(0))
         sol.append(mini[0]+1)
+    sol = sol[-4:]
 
     return sol[-1]
 
