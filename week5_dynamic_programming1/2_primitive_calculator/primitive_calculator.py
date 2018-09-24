@@ -4,6 +4,8 @@ import sys
 
 def get_change(m):
     sol = [[1], [1, 2], [1, 3], [1, 3, 4]]
+    if m < 5:
+        return sol[m-1]
 
     for i in range(5, m + 1):
         sollist = [sol[-1]+[i]]
