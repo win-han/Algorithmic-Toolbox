@@ -6,12 +6,9 @@ from operator import itemgetter
 
 def sweep_line(starts, ends, points):
     cnt = [0] * len(points)
-    zip_starts = zip(['a'] * len(starts),
-                     starts, range(len(starts)))
-    zip_ends = zip(['x'] * len(ends),
-                   ends, range(len(ends)))
-    zip_points = zip(['p'] * len(points),
-                     points, range(len(points)))
+    zip_starts = zip(['a'] * len(starts), starts, range(len(starts)))
+    zip_ends = zip(['x'] * len(ends), ends, range(len(ends)))
+    zip_points = zip(['p'] * len(points), points, range(len(points)))
     line = chain(zip_starts, zip_ends, zip_points)
     line = sorted(line, key=itemgetter(1, 0))
     sweeper = 0
