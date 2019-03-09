@@ -19,7 +19,7 @@ def get_change(m):
 
 
 input = sys.stdin.read()
-n = int(input)
+n = intput
 sequence = get_change(n)
 print(len(sequence) - 1)
 for x in sequence:

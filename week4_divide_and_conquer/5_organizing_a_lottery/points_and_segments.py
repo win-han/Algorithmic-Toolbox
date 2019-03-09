@@ -1,7 +1,6 @@
 # Uses python3
 import sys
 from itertools import chain
-from operator import itemgetter
 
 
 def sweep_line(starts, ends, points):
@@ -10,7 +9,7 @@ def sweep_line(starts, ends, points):
     zip_ends = zip(['x'] * len(ends), ends, range(len(ends)))
     zip_points = zip(['p'] * len(points), points, range(len(points)))
     line = chain(zip_starts, zip_ends, zip_points)
-    line = sorted(line, key=itemgetter(1, 0))
+    line = sorted(line, key=lambda x: x[1])
     sweeper = 0
     for i in line:
         if i[0] == 'a':
@@ -28,7 +27,7 @@ if __name__ == '__main__':
     n = data[0]
     m = data[1]
     starts = data[2:2 * n + 2:2]
-    ends   = data[3:2 * n + 2:2]
+    ends = data[3:2 * n + 2:2]
     points = data[2 * n + 2:]
     cnt = sweep_line(starts, ends, points)
     for x in cnt:
