@@ -28,7 +28,6 @@ def fib_fast(n, m):
             a.pop()
             a.pop()
             break
-
     z = a[n % len(a)] - 1
     return z if z != -1 else 9
 

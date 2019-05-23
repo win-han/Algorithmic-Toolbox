@@ -1,18 +1,13 @@
 # Uses python3
-def calc_fib_slow(n):
-    if (n <= 1):
+def calc_fib(n):
+    if n <= 1:
         return n
+    previous = 0
+    current = 1
+    for _ in range(n - 1):
+        previous, current = current, previous + current
+    return current
 
-    return calc_fib_slow(n - 1) + calc_fib_slow(n - 2)
-
-
-def fib_fast(n):
-    a = [0, 1]
-    if n == 0 or n == 1:
-        return a[n]
-    for i in range(n-1):
-        a.append((a[-1]+a[-2]))
-    return a[-1]
 
 n = int(input())
-print(fib_fast(n))
+print(calc_fib(n))

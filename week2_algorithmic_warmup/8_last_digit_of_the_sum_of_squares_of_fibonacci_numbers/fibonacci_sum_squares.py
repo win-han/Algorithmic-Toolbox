@@ -32,5 +32,5 @@ def fib_fast(n, m):
 
 if __name__ == '__main__':
     n = int(stdin.read())
-    print(fib_fast(n+1,10)*fib_fast(n,10) % 10)
+    print(fib_fast(n+1, 10)*fib_fast(n, 10) % 10)
 

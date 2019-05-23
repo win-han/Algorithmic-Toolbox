@@ -1,6 +1,4 @@
 # python3
-
-
 def max_pairwise_product(numbers):
     n = len(numbers)
     a, b = 0, 0

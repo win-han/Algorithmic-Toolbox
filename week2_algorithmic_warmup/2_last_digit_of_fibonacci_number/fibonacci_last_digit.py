@@ -14,12 +14,13 @@ def get_fibonacci_last_digit_naive(n):
 
     return current % 10
 
+
 def fib_fast(n):
     if n <= 1:
         return n
     a, b = 0, 1
     for i in range(n-1):
-        a, b = b, (a + b)%10
+        a, b = b, (a + b) % 10
     return b
 
 

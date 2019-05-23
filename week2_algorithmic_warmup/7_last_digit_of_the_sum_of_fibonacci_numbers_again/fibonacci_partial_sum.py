@@ -1,6 +1,7 @@
 # Uses python3
 import sys
 
+
 def fibonacci_partial_sum_naive(from_, to):
     sum = 0
 
@@ -14,6 +15,7 @@ def fibonacci_partial_sum_naive(from_, to):
         current, next = next, current + next
 
     return sum % 10
+
 
 def fib_fast(n, m):
 

@@ -2,6 +2,9 @@
 import sys
 
 
+global_counter = 0
+
+
 def get_number_of_inversions(a, b, left, right):
     number_of_inversions = 0
     if right - left <= 1:
@@ -9,16 +12,11 @@ def get_number_of_inversions(a, b, left, right):
     ave = (left + right) // 2
     number_of_inversions += get_number_of_inversions(a, b, left, ave)
     number_of_inversions += get_number_of_inversions(a, b, ave, right)
-
     return number_of_inversions
-
-
-global_counter = 0
 
 
 def merge_sort(a):
     global global_counter
-    z = 0
     if len(a) == 1:
         return a
 

@@ -26,7 +26,7 @@ def fib_fast(n, m):
             a.pop()
             break
 
-    return a[n%len(a)]
+    return a[n % len(a)]
 
 
 if __name__ == '__main__':
