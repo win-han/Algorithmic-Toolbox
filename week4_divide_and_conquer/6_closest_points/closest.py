@@ -1,34 +1,55 @@
 #Uses python3
 import sys
 import math
-from operator import itemgetter
 
 
-def closest_pair(x_sorted, y_sorted):
-    if len(x_sorted) <= 3:
-        return less_than_3(x_sorted)
+def minimum_distance(points):
+    def distance(a, b):
+        return math.sqrt((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2)
 
-    mid = len(x_sorted) // 2
+    if len(points) == 1:
+        return float('inf')
+    elif len(points) == 2:
+        return distance(points[0], points[1])
+    mid = len(points) // 2
+    left_min = minimum_distance(points[:mid])
+    right_min = minimum_distance(points[mid:])
+    minimum = min(left_min, right_min)
+    mid_left, mid_right = [], [points[mid]]
 
-    x_left, x_right = x_sorted[:mid], x_sorted[mid:]
-    y_left, y_right = y_sorted[:mid], y_sorted[mid:]
-    a1 = closest_pair(x_left, y_left)
-    a2 = closest_pair(x_right, y_right)
-    a3 = closest_split_pair(x_sorted, y_sorted)
-    return min(a1, a2, a3)
+    if left_min != float('inf'):
+        shift = 1
+        while shift <= mid:
+            try:
+                if points[mid][0] - points[mid-shift][0] < minimum:
+                    mid_left.append(points[mid-shift])
+                    shift += 1
+                else:
+                    break
+            except IndexError:
+                break
+    else:
+        mid_left.append(points[mid-1])
 
+    if right_min != float('inf'):
+        shift = 1
+        while shift <= mid:
+            try:
+                if points[mid][0] - points[mid+shift][0] < minimum:
+                    mid_right.append(points[mid+shift])
+                    shift += 1
+                else:
+                    break
+            except IndexError:
+                break
 
-def less_than_3(x):
-    pass
-
-
-def closest_split_pair(x_sorted, y_sorted):
-
-    return -1
-
-
-def dist_(point1, point2):
-    return math.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
+    k = float('inf')
+    for i in mid_left:
+        for j in mid_right:
+            s = distance(i, j)
+            if s < k:
+                k = s
+    return min(left_min, right_min, k)
 
 
 if __name__ == '__main__':
@@ -37,6 +58,5 @@ if __name__ == '__main__':
     n = data[0]
     x = data[1::2]
     y = data[2::2]
-    x_y = sorted(zip(x, y), key=itemgetter(0, 1))
-    y_x = sorted(zip(x, y), key=itemgetter(1, 0))
-    print("{0:.9f}".format(closest_pair(x_y, y_x)))
+    points = sorted([(i, j) for i, j in zip(x, y)], key=lambda x: x[0])
+    print("{0:.9f}".format(minimum_distance(points)))
